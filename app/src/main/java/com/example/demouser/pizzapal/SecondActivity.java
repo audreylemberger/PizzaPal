@@ -12,9 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.demouser.pizzapal.data.Pizza;
 
@@ -24,13 +22,19 @@ import com.example.demouser.pizzapal.data.Pizza;
  */
 public class SecondActivity extends AppCompatActivity {
 
-    private EditText itemName;
-    private EditText price;
-    private EditText description;
-    private CheckBox checkBox;
-    private Spinner dropdown;
+
     public static final String KEY_ITEM = "KEY_ITEM";
     private Pizza itemToEdit = null;
+    private Button addButton;
+    private Button cancelButton;
+    private CheckBox gfBox;
+    private CheckBox vegBox;
+    private CheckBox kosherBox;
+    private CheckBox veganBox;
+    private Spinner buildings;
+    private Spinner toppings;
+    private EditText roomNumber;
+    private EditText venderInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +44,31 @@ public class SecondActivity extends AppCompatActivity {
         if (getIntent().getSerializableExtra(MainActivity.KEY_EDIT) != null) {
             itemToEdit = (Pizza) getIntent().getSerializableExtra(MainActivity.KEY_EDIT);
         }
-        itemName = (EditText) findViewById(R.id.itemname);
-        price = (EditText) findViewById(R.id.price);
-        description = (EditText) findViewById(R.id.description);
-        checkBox = (CheckBox) findViewById(R.id.checkBox);
-        dropdown = (Spinner)findViewById(R.id.dropdown);
-        String[] items = new String[]{"Food", "Electronic", "Book"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
+        addButton = ((Button)findViewById(R.id.addButton));
+        cancelButton = ((Button)findViewById(R.id.cancelButton));
+        gfBox = ((CheckBox) findViewById(R.id.gfBox));
+        vegBox = ((CheckBox) findViewById(R.id.vegBox));
+        kosherBox = ((CheckBox) findViewById(R.id.kosherBox));
+        veganBox = ((CheckBox) findViewById(R.id.veganBox));
+        roomNumber = ((EditText)findViewById(R.id.edRoomNumText));
+        venderInfo = ((EditText) findViewById(R.id.edVendorText));
 
 
-        Button btnAddItem = (Button) findViewById(R.id.btnAddItem);
-        btnAddItem.setOnClickListener(new View.OnClickListener() {
+        buildings = (Spinner)findViewById(R.id.spinner1);
+        toppings = (Spinner)findViewById(R.id.spinner2);
+        String[] buildingItems = new String[]{"1837", "Abbey", "Brigham", "Buckland", "Creighton", "Dickinson"
+                , "Ham", "MacGregor", "North Mandelle", "South Mandelle", "Mead", "Pearsons", "Pearsons Annex"
+                , "Porter", "Prospect", "North Rockefeller", "South Rockefeller", "Safford", "Torrey", "Wilder"
+                , "Art Building", "Carr Laboratory", "Ciruti", "Clapp", "Cleveland", "Dwight", "Equestrian Center"
+                , "StonyBrook", "Kendade", "Kendall Athletic Complex", "Pratt", "Reese", "Rooke Theatre"
+                , "Shattuck", "Skinner", "Talcott Greenhouse", "Williston Observatory", "Smith Library"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, buildingItems);
+
+        buildings.setAdapter(adapter);
+
+
+        //rowspan/columnspan
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -61,11 +78,14 @@ public class SecondActivity extends AppCompatActivity {
         });
 
         if (itemToEdit != null) {
-            itemName.setText(itemToEdit.getItem());
-            description.setText(itemToEdit.getDescription());
-            dropdown.setSelection(itemToEdit.getPlaceType().getValue());
-            checkBox.setChecked(itemToEdit.isPurchased());
-            price.setText(itemToEdit.getItem());
+            roomNumber.setText(itemToEdit.getLoc()[1]);
+            venderInfo.setText(itemToEdit.getVendor());
+            buildings.setSelection(itemToEdit.getBuildingNumber());
+            vegBox.setChecked(itemToEdit.getRestrictions()[0]);
+            veganBox.setChecked(itemToEdit.getRestrictions()[1]);
+            kosherBox.setChecked(itemToEdit.getRestrictions()[2]);
+            gfBox.setChecked(itemToEdit.getRestrictions()[3]);
+
         }
 
     }
@@ -82,12 +102,14 @@ public class SecondActivity extends AppCompatActivity {
 
         }
 
-        itemResult.setItem(itemName.getText().toString());
-        itemResult.setDescription(description.getText().toString());
-        itemResult.setPlaceType(
-                ShoppingItem.PlaceType.fromInt(dropdown.getSelectedItemPosition()));
-        itemResult.setPurchased(checkBox.isChecked());
-        itemResult.setPrice(price.getText().toString());
+
+        itemResult.setRoom(roomNumber.getText().toString());
+        itemResult.setBuilding(buildings.getItemAtPosition(buildings.getSelectedItemPosition()).toString());
+        itemResult.setBuildingNumber((buildings.getSelectedItemPosition()));
+        itemResult.setIsVegan(veganBox.isChecked());
+        itemResult.setIsVegetarian(vegBox.isChecked());
+        itemResult.setIsKosher(kosherBox.isChecked());
+        itemResult.setIsGF(gfBox.isChecked());
 
         intentResult.putExtra(KEY_ITEM, itemResult);
         setResult(RESULT_OK, intentResult);

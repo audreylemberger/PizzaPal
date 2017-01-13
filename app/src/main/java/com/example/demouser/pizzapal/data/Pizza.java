@@ -28,8 +28,8 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
     //something to hold toppings
     private HashSet<String> toppings;
     //something to keep track of date and time/age?
-
-
+    //private int[] buildingNumbers = new int[38];
+    private int buildingNumber;
     long delivered;
     Date expires;
     //true if no slices remain or expired
@@ -40,6 +40,8 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
     private String vendor;
     //optional note about pizza
     private String note;
+    private String[] buildingItems;
+    private String[] tops;
 
     public Pizza(){
 
@@ -57,20 +59,27 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
     {
         //indices are vegetarian, vegan, kosher/halal, gluten free
         restrictions = restr;
+        tops =tops;
         //initialize hashset and insert toppings
         toppings = new HashSet<String>();
         for(int i = 0; i < tops.length; i++)
         {
             toppings.add(tops[i]);
         }
+        buildingItems = new String[]{"1837", "Abbey", "Brigham", "Buckland", "Creighton", "Dickinson"
+                , "Ham", "MacGregor", "North Mandelle", "South Mandelle", "Mead", "Pearsons", "Pearsons Annex"
+                , "Porter", "Prospect", "North Rockefeller", "South Rockefeller", "Safford", "Torrey", "Wilder"
+                , "Art Building", "Carr Laboratory", "Ciruti", "Clapp", "Cleveland", "Dwight", "Equestrian Center"
+                , "StonyBrook", "Kendade", "Kendall Athletic Complex", "Pratt", "Reese", "Rooke Theatre"
+                , "Shattuck", "Skinner", "Talcott Greenhouse", "Williston Observatory", "Smith Library"};
         //initialize all these variables
         location = loc;
         vendor = vend;
         this.note = note;
-        delivered = System.currentTimeMillis();
-        delivered.set(Calendar.DAY_OF_YEAR, Calendar.DATE, Calendar.HOUR,Calendar.MINUTE, Calendar.SECOND);
-        delivered.add(Calendar.HOUR, 3);
-        expires = delivered.getTime();
+//        delivered = System.currentTimeMillis();
+//        delivered.set(Calendar.DAY_OF_YEAR, Calendar.DATE, Calendar.HOUR,Calendar.MINUTE, Calendar.SECOND);
+//        delivered.add(Calendar.HOUR, 3);
+//        expires = delivered.getTime();
 
         long expiremilis = 60000l * 120; // 1 minute
         Calendar expireDate= Calendar.getInstance();
@@ -88,6 +97,18 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
         done = true;
     }
 
+    public String getToppings(){
+        String topsString = "";
+
+        for (int i = 0; i < tops.length;i++){
+            topsString = tops[i] + " ";
+        }
+        if (topsString.length() > 150){
+            topsString = topsString.substring(0, 149);
+            topsString = topsString + "...";
+        }
+        return topsString;
+    }
     /**
      * Method to check if the pizza is finished
      * @return true if pizza is finished
@@ -241,6 +262,30 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
         return restSB.toString();
     }
 
+    public void setIsVegan(boolean vegan){
+        restrictions[0] = vegan;
+    }
+    public void setIsVegetarian(boolean veg){
+        restrictions[1] = veg;
+    }
+    public void setIsKosher(boolean kosher){
+        restrictions[2] = kosher;
+    }
+    public void setIsGF(boolean gluten){
+        restrictions[3] = gluten;
+    }
+    public boolean getIsVegan(){
+        return restrictions[0];
+    }
+    public boolean getIsVegetarian(){
+        return restrictions[1];
+    }
+    public boolean getIsKosher(){
+        return restrictions[2];
+    }
+    public boolean getIsGF(){
+        return restrictions[3];
+    }
     /**
      * Method to return strings for each cell in the display table to show
      * @return displayArray
@@ -259,6 +304,9 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
         return displayArray;
     }
 
+    public boolean[] getRestrictions(){
+        return restrictions;
+    }
     /**
      * Method to calculate the age of the pizza
      * @return age in hours
@@ -270,6 +318,10 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
         //convert to hours
         age = age/60;
         return age;
+    }
+
+    public String getBuildingName(){
+        return buildingItems[buildingNumber];
     }
 
     /**
@@ -285,6 +337,25 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
      * Method to return the time the pizza will expire
      * @return expiration time
      */
+    public int getBuildingNumber(){
+        return buildingNumber;
+    }
+    public void setBuildingNumber(int num){
+        buildingNumber = num;
+    }
+    public void setBuilding(String buildingNum){
+        location[0] = "buildingNum";
+    }
+    public void setRoom(String roomNum){
+        location[1] = "roomNum";
+    }
+    public String getRoom(){
+        return location[1];
+
+    }
+    public String getBuilding(){
+        return location[2];
+    }
     public Date getExpiry()
     {
         return expires;

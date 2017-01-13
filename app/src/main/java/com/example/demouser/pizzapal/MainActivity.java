@@ -16,6 +16,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.example.demouser.pizzapal.adapter.ListRecycler;
 import com.example.demouser.pizzapal.data.Pizza;
+import com.example.demouser.pizzapal.touch.ListTouchHelper;
 
 import java.util.List;
 
@@ -73,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_add) {
+        if (id == R.id.addButton) {
             showCreateItemActivity();
         }
-        else if(id == R.id.action_delete){
+        else if(id == R.id.cancelButton){
             Pizza.deleteAll(Pizza.class);
         }
 
@@ -97,11 +98,13 @@ public class MainActivity extends AppCompatActivity {
                     Pizza itemTemp = (Pizza) data.getSerializableExtra(
                             SecondActivity.KEY_ITEM);
 
-                    itemToEditHolder.setItem(itemTemp.getItem());
-                    itemToEditHolder.setPrice(itemTemp.getPrice());
-                    itemToEditHolder.setDescription(itemTemp.getDescription());
-                    itemToEditHolder.setPurchased(itemTemp.isPurchased());
-                    itemToEditHolder.setPlaceType(itemTemp.getPlaceType());
+                    itemToEditHolder.setBuilding(itemTemp.getBuilding());
+                    itemToEditHolder.setRoom(itemTemp.getRoom());
+                    itemToEditHolder.setIsGF(itemTemp.getIsGF());
+                    itemToEditHolder.setIsKosher(itemTemp.getIsKosher());
+                    itemToEditHolder.setIsVegetarian(itemTemp.getIsVegetarian());
+                    itemToEditHolder.setIsVegan(itemTemp.getIsVegan());
+
 
                     if (itemToEditPosition != -1) {
                         adapter.updateItem(itemToEditPosition, itemToEditHolder);

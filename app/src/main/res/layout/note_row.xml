@@ -46,22 +46,12 @@
         android:text="View Item Details"
         android:id="@+id/viewItem"
         android:layout_gravity="center_vertical"
-        android:layout_below="@+id/purchasedBox"
 
+        android:layout_below="@+id/imageNote"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
-
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Purchased"
-        android:id="@+id/purchasedBox"
-        android:layout_below="@+id/imageNote"
-        android:layout_toRightOf="@+id/imageNote"
-        android:layout_toEndOf="@+id/imageNote" />
 
 
 </RelativeLayout>

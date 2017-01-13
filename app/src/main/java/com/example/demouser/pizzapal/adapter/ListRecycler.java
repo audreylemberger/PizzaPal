@@ -54,9 +54,11 @@ public class ListRecycler extends RecyclerView.Adapter<ListRecycler.ViewHolder>{
     public void onBindViewHolder(ViewHolder holder, final int position) {
         final Pizza item = items.get(position);
 
-        holder.itemNameView.setText(item.getItem());
-        holder.priceView.setText(item.getPrice());
-        holder.checkBox.setChecked(item.isPurchased());
+        holder.itemNameView.setText(item.getBuildingName() + " " + item.getRoom());
+        holder.priceView.setText(item.getToppings());
+        //do a case here to get dietry restrictions
+        holder.ivIcon.setImageDrawable();
+
 
 
 
@@ -88,7 +90,6 @@ public class ListRecycler extends RecyclerView.Adapter<ListRecycler.ViewHolder>{
             super(itemView);
             itemNameView = (TextView) itemView.findViewById(R.id.itemNameView);
             priceView = (TextView) itemView.findViewById(R.id.priceView);
-            checkBox = (CheckBox) itemView.findViewById(R.id.purchasedBox);
             ivIcon = (ImageView) itemView.findViewById(R.id.imageNote);
         }
     }
