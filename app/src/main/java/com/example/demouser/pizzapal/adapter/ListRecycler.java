@@ -89,7 +89,6 @@ public class ListRecycler extends RecyclerView.Adapter<ListRecycler.ViewHolder>{
             itemNameView = (TextView) itemView.findViewById(R.id.itemNameView);
             priceView = (TextView) itemView.findViewById(R.id.priceView);
             checkBox = (CheckBox) itemView.findViewById(R.id.purchasedBox);
-            deleteButton = (Button) itemView.findViewById(R.id.deleteItem);
             ivIcon = (ImageView) itemView.findViewById(R.id.imageNote);
         }
     }

@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                     Pizza pizza = (Pizza) data.getSerializableExtra(
                             SecondActivity.KEY_ITEM);
 
-                    adapter.addItem(shopping);
+                    adapter.addItem(pizza);
 
                 } else if (requestCode == REQUEST_EDIT_ITEM) {
                     Pizza itemTemp = (Pizza) data.getSerializableExtra(

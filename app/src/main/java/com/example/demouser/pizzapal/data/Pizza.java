@@ -4,6 +4,8 @@ package com.example.demouser.pizzapal.data;
  * Created by demouser on 1/11/17.
  */
 
+import com.orm.SugarRecord;
+
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +21,7 @@ import java.util.TreeSet;
  * @author kataiello
  * @version 12/13/16
  */
-public class Pizza implements Serializable, Comparable
+public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparable
 {
     //array of booleans to keep track of dietary restrictions
     private boolean[] restrictions;
@@ -39,6 +41,9 @@ public class Pizza implements Serializable, Comparable
     //optional note about pizza
     private String note;
 
+    public Pizza(){
+
+    }
 
     /**
      * Constructor method
