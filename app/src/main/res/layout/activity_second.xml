@@ -108,8 +108,8 @@
                 android:id="@+id/cancelButton"
                 android:layout_marginBottom="27dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignRight="@+id/spinner2"
-                android:layout_alignEnd="@+id/spinner2"
+                android:layout_alignRight="@+id/toppingsEd"
+                android:layout_alignEnd="@+id/toppingsEd"
                 android:layout_marginRight="13dp"
                 android:layout_marginEnd="13dp" />
 
@@ -142,14 +142,6 @@
                 android:layout_alignStart="@+id/vendorText"
                 android:layout_marginBottom="14dp" />
 
-            <Spinner
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/spinner2"
-                android:layout_alignTop="@+id/toppingsText"
-                android:layout_toRightOf="@+id/toppingsText"
-                android:layout_toEndOf="@+id/toppingsText" />
-
             <TextView
                 android:text="Vendor:"
                 android:layout_width="wrap_content"
@@ -172,12 +164,27 @@
                 android:layout_centerHorizontal="true" />
 
             <Spinner
-                android:layout_width="250dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/spinner1"
+                android:textSize="15sp"
                 android:layout_alignTop="@+id/buildingText"
                 android:layout_toRightOf="@+id/toppingsText"
                 android:layout_toEndOf="@+id/toppingsText" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/toppingsEd"
+                android:hint="Please list toppings on pizza"
+                android:textSize="15sp"
+
+                android:layout_alignBaseline="@+id/toppingsText"
+                android:layout_alignBottom="@+id/toppingsText"
+                android:layout_alignLeft="@+id/edVendorText"
+                android:layout_alignStart="@+id/edVendorText"
+                android:layout_alignTop="@+id/buildingText" />
+
 
         </RelativeLayout>
     </LinearLayout>

@@ -32,7 +32,7 @@ public class SecondActivity extends AppCompatActivity {
     private CheckBox kosherBox;
     private CheckBox veganBox;
     private Spinner buildings;
-    private Spinner toppings;
+    private EditText toppings;
     private EditText roomNumber;
     private EditText venderInfo;
 
@@ -52,10 +52,11 @@ public class SecondActivity extends AppCompatActivity {
         veganBox = ((CheckBox) findViewById(R.id.veganBox));
         roomNumber = ((EditText)findViewById(R.id.edRoomNumText));
         venderInfo = ((EditText) findViewById(R.id.edVendorText));
+        toppings = ((EditText) findViewById(R.id.toppingsEd));
+
 
 
         buildings = (Spinner)findViewById(R.id.spinner1);
-        toppings = (Spinner)findViewById(R.id.spinner2);
         String[] buildingItems = new String[]{"1837", "Abbey", "Brigham", "Buckland", "Creighton", "Dickinson"
                 , "Ham", "MacGregor", "North Mandelle", "South Mandelle", "Mead", "Pearsons", "Pearsons Annex"
                 , "Porter", "Prospect", "North Rockefeller", "South Rockefeller", "Safford", "Torrey", "Wilder"
@@ -85,6 +86,7 @@ public class SecondActivity extends AppCompatActivity {
             veganBox.setChecked(itemToEdit.getRestrictions()[1]);
             kosherBox.setChecked(itemToEdit.getRestrictions()[2]);
             gfBox.setChecked(itemToEdit.getRestrictions()[3]);
+            toppings.setText(itemToEdit.getToppings());
 
         }
 

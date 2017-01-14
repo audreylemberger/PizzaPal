@@ -21,7 +21,7 @@ import java.util.TreeSet;
  * @author kataiello
  * @version 12/13/16
  */
-public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparable
+public class Pizza extends SugarRecord<Pizza> implements Serializable
 {
     //array of booleans to keep track of dietary restrictions
     private boolean[] restrictions;
@@ -314,10 +314,11 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
     public double getAge(Calendar compare)
     {
         //determine the number of minutes between when the pizza was delivered and now
-        double age = ChronoUnit.MINUTES.between(delivered, compare);
-        //convert to hours
-        age = age/60;
-        return age;
+//        double age = ChronoUnit.MINUTES.between(delivered, compare);
+//        //convert to hours
+//        age = age/60;
+//        return age;
+        return 0;
     }
 
     public String getBuildingName(){
@@ -328,10 +329,10 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
      * Method to return the time the pizza was delivered
      * @return delivery time
      */
-    public Calendar getDelivered()
-    {
-        return delivered;
-    }
+//    public Calendar getDelivered()
+//    {
+//        return delivered;
+//    }
 
     /**
      * Method to return the time the pizza will expire
@@ -361,27 +362,27 @@ public class Pizza extends SugarRecord<Pizza> implements Serializable, Comparabl
         return expires;
     }
 
-    @Override
-    /**
-     * CompareTo method to sort pizzas in treeset
-     */
-    public int compareTo(Object o)
-    {
-        //first try comparing by time added
-        if(delivered.compareTo(((Pizza) o).getDelivered()) != 0)
-        {
-            //-1 because we want newest at the top
-            return -1*delivered.compareTo(((Pizza) o).getDelivered());
-        }
-        //if added at the same exact time, sort by building
-        else if(location[0].compareTo(((Pizza) o).getLoc()[0]) != 0)
-        {
-            return location[0].compareTo(((Pizza) o).getLoc()[0]);
-        }
-        //otherwise sort by room and hope nobody orchestrates adding two pizzas in the same room in the same building at the same exact time???
-        else
-        {
-            return location[1].compareTo(((Pizza) o).getLoc()[1]);
-        }
-    }
+//    @Override
+//    /**
+//     * CompareTo method to sort pizzas in treeset
+//     */
+//    public int compareTo(Object o)
+//    {
+//        //first try comparing by time added
+//        if(delivered.compareTo(((Pizza) o).getDelivered()) != 0)
+//        {
+//            //-1 because we want newest at the top
+//            return -1*delivered.compareTo(((Pizza) o).getDelivered());
+//        }
+//        //if added at the same exact time, sort by building
+//        else if(location[0].compareTo(((Pizza) o).getLoc()[0]) != 0)
+//        {
+//            return location[0].compareTo(((Pizza) o).getLoc()[0]);
+//        }
+//        //otherwise sort by room and hope nobody orchestrates adding two pizzas in the same room in the same building at the same exact time???
+//        else
+//        {
+//            return location[1].compareTo(((Pizza) o).getLoc()[1]);
+//        }
+//    }
 }

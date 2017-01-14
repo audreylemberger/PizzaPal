@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //problem with this
+        List<Pizza> pizzaList = Pizza.listAll(Pizza.class);
 
-        List<Pizza> shoppingList = Pizza.listAll(Pizza.class);
-
-        adapter = new ListRecycler(shoppingList);
+        adapter = new ListRecycler(pizzaList);
         RecyclerView recyclerViewPlaces = (RecyclerView) findViewById(
                 R.id.recycler_view);
         recyclerViewPlaces.setLayoutManager(new LinearLayoutManager(this));
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.addButton) {
+        if (id == R.id.action_add) {
             showCreateItemActivity();
         }
-        else if(id == R.id.cancelButton){
+        else if(id == R.id.action_delete){
             Pizza.deleteAll(Pizza.class);
         }
 

@@ -3,24 +3,29 @@
     package="com.example.demouser.pizzapal">
 
     <application
+        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name="com.orm.SugarApp"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="DATABASE"
+        <meta-data
+            android:name="DATABASE"
             android:value="shopping.db" />
-        <meta-data android:name="VERSION" android:value="3" />
-        <meta-data android:name="QUERY_LOG"
+        <meta-data
+            android:name="VERSION"
+            android:value="5" />
+        <meta-data
+            android:name="QUERY_LOG"
             android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME"
-            android:value="hu.ait.andriod.shoppinglistapplication.data" />
+        <meta-data
+            android:name="DOMAIN_PACKAGE_NAME"
+            android:value="com.example.demouser.pizzapal.data" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,9 +33,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecondActivity"
-            android:label="SecondActivity" >
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+
         </activity>
+        <activity
+            android:name=".SecondActivity"
+            android:label="SecondActivity"></activity>
+
     </application>
 
 </manifest>

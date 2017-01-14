@@ -31,8 +31,8 @@ public class ListRecycler extends RecyclerView.Adapter<ListRecycler.ViewHolder>{
     private List<Pizza> items;
     private Context context;
 
-    public ListRecycler (List<Pizza> placesList) {
-        this.items = placesList;
+    public ListRecycler (List<Pizza> pizzaList) {
+        this.items = pizzaList;
     }
 
 
@@ -57,14 +57,14 @@ public class ListRecycler extends RecyclerView.Adapter<ListRecycler.ViewHolder>{
         holder.itemNameView.setText(item.getBuildingName() + " " + item.getRoom());
         holder.priceView.setText(item.getToppings());
         //do a case here to get dietry restrictions
-        holder.ivIcon.setImageDrawable();
+        //holder.ivIcon.setImageDrawable();
 
 
 
 
 
         // why no button??
-        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+        holder.viewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 item.delete();
@@ -81,9 +81,9 @@ public class ListRecycler extends RecyclerView.Adapter<ListRecycler.ViewHolder>{
 
         private TextView itemNameView;
         private TextView priceView;
-        private CheckBox checkBox;
-        private Button deleteButton;
         private ImageView ivIcon;
+
+        private Button viewButton;
 
 
         public ViewHolder(View itemView){
@@ -91,6 +91,7 @@ public class ListRecycler extends RecyclerView.Adapter<ListRecycler.ViewHolder>{
             itemNameView = (TextView) itemView.findViewById(R.id.itemNameView);
             priceView = (TextView) itemView.findViewById(R.id.priceView);
             ivIcon = (ImageView) itemView.findViewById(R.id.imageNote);
+            viewButton = (Button) itemView.findViewById(R.id.viewItem);
         }
     }
 
